@@ -35,7 +35,8 @@ export default function RegisterPage() {
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
-	const server_url = "http://localhost:5000";
+	// const server_url = "http://localhost:5000";
+	const server_url = "https://programming-club.onrender.com";
 
 	// Validation function
 	const validateForm = () => {
