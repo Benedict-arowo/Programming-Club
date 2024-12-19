@@ -20,6 +20,7 @@ export default function RegisterPage() {
 	const [formData, setFormData] = useState({
 		first_name: "",
 		last_name: "",
+		phone_number: "",
 		department: "",
 		email: "",
 		skill: "",
@@ -48,6 +49,8 @@ export default function RegisterPage() {
 			errors.last_name = "Last name is required";
 		if (!formData.email.trim() || !/\S+@\S+\.\S+/.test(formData.email))
 			errors.email = "A valid email is required";
+		if (!formData.phone_number.trim())
+			errors.phone_number = "Phone number is required";
 		if (step >= 2 && !formData.department.trim())
 			errors.department = "Department is required";
 		if (step >= 2 && !formData.skill)
@@ -171,6 +174,23 @@ export default function RegisterPage() {
 										</p>
 									)}
 								</div>
+								<div>
+									<Label htmlFor="phone_number">
+										Phone Number
+									</Label>
+									<Input
+										id="phone_number"
+										name="phone_number"
+										value={formData.phone_number}
+										onChange={handleInputChange}
+										required
+									/>
+									{formErrors["email"] && (
+										<p className="text-red-500 text-sm">
+											{formErrors["phone_number"]}
+										</p>
+									)}
+								</div>
 								<Button
 									type="button"
 									onClick={() => {
@@ -190,6 +210,9 @@ export default function RegisterPage() {
 										)
 											errors.email =
 												"A valid email is required";
+										if (!formData.phone_number.trim())
+											errors.phone_number =
+												"Phone number is required";
 
 										if (hasAnyValue(errors))
 											setFormErrors(errors);
