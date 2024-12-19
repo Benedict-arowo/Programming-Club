@@ -45,12 +45,13 @@ export default function SuccessPage() {
 
 					<p>
 						If you have any questions before we meet, don't hesitate
-						to reach out to us at{" "}
+						to reach out to us.
+						{/* at{" "}
 						<a
 							href="mailto:programmingclub@achieversuniversity.edu.ng"
 							className="text-blue-600 hover:underline">
 							programmingclub@achieversuniversity.edu.ng
-						</a>
+						</a> */}
 					</p>
 				</div>
 
