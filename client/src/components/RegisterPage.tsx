@@ -468,7 +468,7 @@ export default function RegisterPage() {
 				isOpen={showSuccessModal}
 				onClose={() => {
 					setShowSuccessModal(false);
-					navigate("/");
+					navigate("/success");
 				}}
 				title="Registration Successful">
 				<p>Thank you for registering with the Programming Club!</p>
