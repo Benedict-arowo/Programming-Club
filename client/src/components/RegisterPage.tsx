@@ -24,6 +24,7 @@ export default function RegisterPage() {
 		email: "",
 		skill: "",
 		background: "",
+		has_computer: "",
 		availableDays: "",
 		availableTimes: "",
 	});
@@ -101,6 +102,16 @@ export default function RegisterPage() {
 		}
 	};
 
+	function hasAnyValue(obj: object) {
+		return Object.values(obj).some(
+			(value) =>
+				value !== null &&
+				value !== undefined &&
+				value !== false &&
+				value !== ""
+		);
+	}
+
 	return (
 		<div className="min-h-screen bg-gradient-to-b from-blue-50 to-teal-50 py-12">
 			<Card className="max-w-2xl mx-auto">
@@ -162,7 +173,28 @@ export default function RegisterPage() {
 								</div>
 								<Button
 									type="button"
-									onClick={() => setStep(2)}>
+									onClick={() => {
+										const errors: {
+											[key: string]: string;
+										} = {};
+
+										if (!formData.first_name.trim())
+											errors.first_name =
+												"First name is required";
+										if (!formData.last_name.trim())
+											errors.last_name =
+												"Last name is required";
+										if (
+											!formData.email.trim() ||
+											!/\S+@\S+\.\S+/.test(formData.email)
+										)
+											errors.email =
+												"A valid email is required";
+
+										if (hasAnyValue(errors))
+											setFormErrors(errors);
+										else setStep(2);
+									}}>
 									Next
 								</Button>
 							</div>
@@ -170,6 +202,33 @@ export default function RegisterPage() {
 
 						{step === 2 && (
 							<div className="space-y-4">
+								<div>
+									<Label htmlFor="has_computer">
+										Do you have a functional computer
+										currently?
+									</Label>
+									<Select
+										onValueChange={handleSelectChange(
+											"has_computer"
+										)}>
+										<SelectTrigger>
+											<SelectValue placeholder="Yes / No" />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value={"True"}>
+												Yes
+											</SelectItem>
+											<SelectItem value="False">
+												No
+											</SelectItem>
+										</SelectContent>
+									</Select>
+									{formErrors["skill"] && (
+										<p className="text-red-500 text-sm">
+											{formErrors["skill"]}
+										</p>
+									)}
+								</div>
 								<div>
 									<Label htmlFor="department">
 										Department
@@ -243,7 +302,30 @@ export default function RegisterPage() {
 								</Button>
 								<Button
 									type="button"
-									onClick={() => setStep(3)}
+									onClick={() => {
+										const errors: {
+											[key: string]: string;
+										} = {};
+
+										if (
+											step >= 2 &&
+											!formData.department.trim()
+										)
+											errors.department =
+												"Department is required";
+										if (step >= 2 && !formData.skill)
+											errors.skill =
+												"Please select a skill to learn";
+										if (
+											step >= 2 &&
+											!formData.background.trim()
+										)
+											errors.background =
+												"Background information is required";
+										if (hasAnyValue(errors))
+											setFormErrors(errors);
+										else setStep(3);
+									}}
 									className="ml-2">
 									Next
 								</Button>
