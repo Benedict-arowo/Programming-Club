@@ -18,6 +18,14 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
+	department: {
+		type: String,
+		required: true,
+	},
+	has_computer: {
+		type: Boolean,
+		required: true,
+	},
 	skill: {
 		type: String,
 		required: true,
@@ -27,12 +35,10 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 	},
 	availability: {
-		type: [
-			{
-				day: { type: String, required: true },
-				time: { type: String, required: true },
-			},
-		],
+		type: {
+			day: { type: String, required: true },
+			time: { type: String, required: true },
+		},
 	},
 });
 

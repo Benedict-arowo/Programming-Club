@@ -37,8 +37,8 @@ export default function RegisterPage() {
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
-	// const server_url = "http://localhost:5000";
-	const server_url = "https://programming-club.onrender.com";
+	const server_url = "http://localhost:5000";
+	// const server_url = "https://programming-club.onrender.com";
 
 	// Validation function
 	const validateForm = () => {
@@ -89,7 +89,15 @@ export default function RegisterPage() {
 			const response = await fetch(`${server_url}/join`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
+				body: JSON.stringify({
+					...formData,
+					has_computer:
+						formData.has_computer === "True" ? true : false,
+					availability: {
+						day: formData.availableDays,
+						time: formData.availableTimes,
+					},
+				}),
 			});
 
 			const data = await response.json();

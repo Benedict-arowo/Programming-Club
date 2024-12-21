@@ -30,6 +30,11 @@ app.route("/join").post(async (req, res) => {
 	}
 });
 
+app.route("/participants").get(async (req, res) => {
+	const data = await userModel.find();
+	res.status(200).json({ message: "Success", data });
+});
+
 app.listen(Config.port, async () => {
 	try {
 		await mongoose.connect(Config.db);
