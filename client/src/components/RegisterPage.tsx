@@ -315,6 +315,10 @@ export default function RegisterPage() {
 								<div>
 									<Label htmlFor="background">
 										Your background in the selected skill
+										(Any project you've worked on, or
+										anything you've done using the skill
+										you've selected? Write none if you don't
+										have any)
 									</Label>
 									<Textarea
 										id="background"
