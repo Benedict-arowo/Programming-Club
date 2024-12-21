@@ -33,6 +33,7 @@ app.route("/join").post(async (req, res) => {
 app.listen(Config.port, async () => {
 	try {
 		await mongoose.connect(Config.db);
+		console.log(Config.db);
 		console.log(`Server listening on ${Config.port}`);
 	} catch (error) {
 		console.log(error);

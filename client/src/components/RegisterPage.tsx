@@ -293,6 +293,9 @@ export default function RegisterPage() {
 											<SelectItem value="web_development">
 												Web Development
 											</SelectItem>
+											<SelectItem value="content_creation">
+												Content Creation
+											</SelectItem>
 										</SelectContent>
 									</Select>
 									{formErrors["skill"] && (
