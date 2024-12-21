@@ -14,6 +14,7 @@ import {
 import { Textarea } from "./ui/textarea";
 import { Modal } from "./Modal";
 import { useNavigate } from "react-router-dom";
+import { server_url } from "../App";
 
 export default function RegisterPage() {
 	const [step, setStep] = useState(1);
@@ -38,7 +39,7 @@ export default function RegisterPage() {
 	const navigate = useNavigate();
 
 	// const server_url = "http://localhost:5000";
-	const server_url = "https://programming-club.onrender.com";
+	// const server_url = "https://programming-club.onrender.com";
 
 	// Validation function
 	const validateForm = () => {
